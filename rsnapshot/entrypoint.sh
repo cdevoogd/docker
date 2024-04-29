@@ -3,9 +3,15 @@
 crontab_file=/var/spool/cron/crontabs/root
 rsnapshot_config="/etc/rsnapshot.conf"
 
-echo "Configured root crontab ($crontab_file)"
-cat "$crontab_file"
-echo
+
+if [ -f "$crontab_file" ]; then
+    echo "Configured root crontab ($crontab_file)"
+    cat "$crontab_file"
+    echo
+    echo "Ensuring the crontab file's permissions are correct"
+    chown root:root "$crontab_file"
+    chmod 600 "$crontab_file"
+fi
 
 if [ -f "$rsnapshot_config" ]; then
     echo "Found a config at rsnapshot's default config location: $rsnapshot_config"
