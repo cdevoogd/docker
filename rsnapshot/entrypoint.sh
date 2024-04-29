@@ -1,6 +1,6 @@
 #!/bin/sh
 
-crontab_file=/etc/crontabs/root
+crontab_file=/var/spool/cron/crontabs/root
 echo "Configured root crontab ($crontab_file)"
 cat "$crontab_file"
 echo
